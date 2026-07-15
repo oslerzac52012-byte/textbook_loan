@@ -1,0 +1,30 @@
+# Rust and Stellar build files
+target/
+.stellar/
+contracts/**/test_snapshots/
+
+# Frontend and Node.js
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+packages/**/node_modules/
+packages/**/dist/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Temporary files
+deploy-output.txt
+deploy-stdout.tmp
+deploy-stderr.tmp
+version-check.txt
+*.bak
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

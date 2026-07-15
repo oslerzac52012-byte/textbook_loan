@@ -1,0 +1,65 @@
+{
+  "name": "Textbook Loan Stellar Development",
+
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    },
+
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "1.97",
+      "profile": "minimal",
+      "targets": "wasm32v1-none",
+      "components": "rust-analyzer,rust-src,rustfmt,clippy"
+    },
+
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+
+    "ghcr.io/devcontainers/features/git-lfs:1": {}
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup-stellar.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "tamasfe.even-better-toml",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+
+      "settings": {
+        "editor.formatOnSave": true,
+        "rust-analyzer.check.command": "clippy",
+
+        "files.watcherExclude": {
+          "**/target/**": true,
+          "**/node_modules/**": true
+        },
+
+        "search.exclude": {
+          "**/target": true,
+          "**/node_modules": true,
+          "**/dist": true
+        }
+      }
+    }
+  },
+
+  "forwardPorts": [
+    5173
+  ],
+
+  "portsAttributes": {
+    "5173": {
+      "label": "Textbook Loan Frontend",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "remoteUser": "vscode"
+}

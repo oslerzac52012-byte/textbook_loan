@@ -1,10 +1,20 @@
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [
     react(),
   ],
+
+  test: {
+    environment: "jsdom",
+    setupFiles: [
+      "./src/test/setup.ts",
+    ],
+    css: true,
+    clearMocks: true,
+    restoreMocks: true,
+  },
 
   build: {
     rolldownOptions: {
@@ -14,8 +24,7 @@ export default defineConfig({
         codeSplitting: {
           groups: [
             {
-              name:
-                "react-vendor",
+              name: "react-vendor",
 
               test:
                 /node_modules[\\/](react|react-dom|scheduler)[\\/]/,
@@ -24,8 +33,7 @@ export default defineConfig({
             },
 
             {
-              name:
-                "stellar-vendor",
+              name: "stellar-vendor",
 
               test:
                 /node_modules[\\/]@stellar[\\/]/,
@@ -34,8 +42,7 @@ export default defineConfig({
             },
 
             {
-              name:
-                "contract-client",
+              name: "contract-client",
 
               test:
                 /node_modules[\\/]textbook_loan[\\/]/,
